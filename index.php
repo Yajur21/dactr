@@ -14,12 +14,12 @@
     <!-- Custom CSS from Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     <!-- Custom page CSS -->
-    <link href="css/signin.css" rel="stylesheet" type="text/css">
+    <link href="css/login.css" rel="stylesheet" type="text/css">
 
   </head>
 
   <body>
-    <div class="login">
+    <div class="register">
 			<h1>Login</h1>
       <!-- Login Form -->
       <form method="post">

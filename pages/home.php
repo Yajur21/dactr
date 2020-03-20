@@ -20,7 +20,7 @@ if (!isset($_SESSION['loggedin'])){
     <title>Home</title>
 
     <!-- Custom style -->
-    <link href="\dactr/css/bootstraphome.css" rel="stylesheet" type="text/css">
+    <link href="\dactr/css/style.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
   </head>
 

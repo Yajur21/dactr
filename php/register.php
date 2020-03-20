@@ -11,7 +11,7 @@
     <title>Register</title>
 
     <!-- Custom CSS -->
-    <link href="\dactr/css/style.css" rel="stylesheet" type="text/css">
+    <link href="\dactr/css/login.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
 
 	</head>
