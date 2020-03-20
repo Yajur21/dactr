@@ -10,7 +10,7 @@
   	-moz-osx-font-smoothing: grayscale;
 }
 body {
-  	background-color: #435165;
+  	background-color: #2f3947;
   	margin: 0;
 }
 .register {
@@ -22,7 +22,7 @@ body {
 }
 .register h1 {
   	text-align: center;
-  	color: #5b6574;
+  	color: #2f3947;
   	font-size: 24px;
   	padding: 20px 0 20px 0;
   	border-bottom: 1px solid #dee0e4;
@@ -54,7 +54,7 @@ body {
   	padding: 15px;
   	margin-top: 20px;
   	background-color: #3274d6;
- 	border: 0;
+ 	  border: 0;
   	cursor: pointer;
   	font-weight: bold;
   	color: #ffffff;
@@ -66,11 +66,10 @@ body {
 }
 .register p{
 	text-align: center;
-  color: red;
   padding: 5px;
 }
 
-/* Used by home.php */
+/* Template used by home.php */
 .navtop {
 	background-color: #2f3947;
 	height: 60px;

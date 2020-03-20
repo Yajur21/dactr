@@ -11,7 +11,7 @@
     <title>Register</title>
 
     <!-- Custom CSS -->
-    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="\dactr/css/style.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
 
 	</head>
@@ -33,7 +33,7 @@
 					<i class="fas fa-envelope"></i>
 				</label>
 				<input type="email" name="email" placeholder="Email" id="email" required>
-        <a href="index.php" style="padding:5px">Go back to login</a>
+        <a href="\dactr/index.php" style="padding:5px">Go back to login</a>
 				<input type="submit" value="Register">
 			</form>
 
@@ -61,7 +61,7 @@
 			// Email validation
 			if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
 				?>
-				<p>Email is not valid</p>
+				<p class = "text-danger">Email is not valid</p>
 				<?php
 				exit();
 			}
@@ -69,14 +69,14 @@
 			// Valid characters: uppercase and lowercase, numbers
 			if (preg_match('/[A-Za-z0-9]+/', $_POST['username']) == 0){
 				?>
-				<p>Username is not valid</p>
+				<p class = "text-danger">Username is not valid</p>
 				<?php
 			  exit();
 			}
 			// Character length Validation
 			if (strlen($_POST['password']) > 20 || strlen($_POST['password']) < 5){
 				?>
-				<p>Password must be between 5 and 20 characters long</p>
+				<p class = "text-danger">Password must be between 5 and 20 characters long</p>
 				<?php
 				exit();
 			}
@@ -92,7 +92,7 @@
 
 			  if ($stmt->num_rows > 0){
 					?>
-					<p>Username exists, please choose another</p>
+					<p class = "text-danger">Username exists, please choose another</p>
 					<?php
 			  } else { //Insert a new account
 			    if ($stmt = $connection->prepare('INSERT INTO accounts (username, password, email) VALUES (?,?,?)')){

@@ -31,7 +31,7 @@
 					<i class="fas fa-lock"></i>
 				</label>
 				<input type="password" name="password" placeholder="Password" id="password" required>
-        <a href="register.php" style:"padding:5px">Click here to register</a>
+        <a href="php/register.php" style:"padding:5px">Click here to register</a>
 				<input type="submit" value="login">
 			</form>
 
@@ -79,13 +79,13 @@
            }
           else {
             ?>
-              <p>Incorrect password</p>
+              <p class="text-danger">Incorrect password</p>
             <?php
           }
         }
         else {
           ?>
-            <p>Incorrect username!</p>
+            <p class="text-danger">Incorrect username</p>
           <?php
         }
 
