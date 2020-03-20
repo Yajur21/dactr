@@ -28,7 +28,7 @@
 				<label for="password">
 					<i class="fas fa-lock"></i>
 				</label>
-				<input type="password" name="password" placeholder="Password" id="password" required>
+				<input type="password" name="password" placeholder="Password (5-20 Characters)" id="password" required>
 				<label for="email">
 					<i class="fas fa-envelope"></i>
 				</label>

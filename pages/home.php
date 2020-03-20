@@ -25,8 +25,10 @@ if (!isset($_SESSION['loggedin'])){
   </head>
 
   <body class="text-center">
+    <!-- Main container -->
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-      <header class="masthead mb-auto">
+      <!-- Header -->
+      <header class="masthead">
         <div class="inner">
           <h3 class="masthead-brand">Dactr</h3>
           <nav class="nav nav-masthead justify-content-center">
@@ -37,15 +39,19 @@ if (!isset($_SESSION['loggedin'])){
           </nav>
         </div>
       </header>
-
+      <!-- Dactr image -->
+      <div class="text-center" style="margin-bottom:5rem">
+        <img src="\dactr/images/dactr.png" class="img-fluid">
+      </div>
+      <!-- Welcome and Diary button -->
       <main role="main" class="inner cover">
-        <h1 class="cover-heading">Welcome <?=$_SESSION['name']?>!</h1>
+        <h1 class="cover-heading">Hello, <?=$_SESSION['name']?>!</h1>
         <p class="lead">Write your diary for Dactr today, if you haven't already!</p>
         <p class="lead">
           <a href="#" class="btn btn-lg btn-secondary">My Diary</a>
         </p>
       </main>
-
+      <!-- Footer -->
       <footer class="mastfoot mt-auto">
         <div class="inner">
           <p>&copy; PyFresh</p>

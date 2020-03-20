@@ -27,10 +27,10 @@
 					<i class="fas fa-user"></i>
 				</label>
 				<input type="text" name="username" placeholder="Username" id="username" required>
-				<label for="password">
+        <label for="password">
 					<i class="fas fa-lock"></i>
 				</label>
-				<input type="password" name="password" placeholder="Password" id="password" required>
+			  <input type="password" name="password" placeholder="Password" id="password" required>
         <a href="php/register.php" style:"padding:5px">Click here to register</a>
 				<input type="submit" value="login">
 			</form>
