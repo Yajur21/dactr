@@ -17,7 +17,7 @@ if (!isset($_SESSION['loggedin'])){
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title>Home</title>
+    <title>Dactr | Home</title>
 
     <!-- Custom style -->
     <link href="\dactr/css/style.css" rel="stylesheet" type="text/css">
@@ -34,7 +34,7 @@ if (!isset($_SESSION['loggedin'])){
           <nav class="nav nav-masthead justify-content-center">
             <a class="nav-link active" href="\dactr/pages/home.php">Home</a>
             <a class="nav-link" href="\dactr/pages/journal.php">My Diary</a>
-            <a class="nav-link" href="\dactr/pages/profile.php">Profile</a>
+            <a class="nav-link" href="\dactr/pages/profile.php">My Profile</a>
             <a class="nav-link" href="\dactr/php/logout.php">Logout</a>
           </nav>
         </div>
