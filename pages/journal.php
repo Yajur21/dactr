@@ -47,7 +47,7 @@ if (!isset($_SESSION['loggedin'])){
             <label for="journal"></label>
             <textarea class="form-control" name="journal" placeholder="Jot down your thoughts..." id="journal" rows="10" required></textarea>
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-large btn-secondary">Submit</button>
         </form>
       </main>
       <!-- Footer -->
