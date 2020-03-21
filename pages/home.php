@@ -48,7 +48,7 @@ if (!isset($_SESSION['loggedin'])){
         <h1 class="cover-heading">Hello, <?=$_SESSION['name']?>!</h1>
         <p class="lead">Write your diary for Dactr today, if you haven't already!</p>
         <p class="lead">
-          <a href="#" class="btn btn-lg btn-secondary">My Diary</a>
+          <a href="journal.php" class="btn btn-lg btn-secondary">My Diary</a>
         </p>
       </main>
       <!-- Footer -->
