@@ -47,8 +47,60 @@ if (!isset($_SESSION['loggedin'])){
             <label for="journal"></label>
             <textarea class="form-control" name="journal" placeholder="Jot down your thoughts..." id="journal" rows="10" required></textarea>
           </div>
-          <button type="submit" class="btn btn-large btn-secondary">Submit</button>
+          <input class="btn btn-large btn-secondary" type="submit" value="Submit">
         </form>
+
+        <?php //Recording journals in the database.
+        // Connect to the database dactrlogin
+  			$DATABASE_HOST = 'localhost';
+  			$DATABASE_USER = 'root';
+  			$DATABASE_PASS = '';
+  			$DATABASE_NAME = 'dactrjournal';
+  			$connection = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+  			// Stop if can't connect
+  			if (mysqli_connect_errno()) {
+  				exit('Failed to connect ' . mysqli_connect_error());
+  			}
+
+        //Check if form is completed
+        if (!isset($_POST['journal']) || $_POST['journal']=='jot') {
+  			  exit();
+  			}
+
+        //Basic function to sanitize input data
+        function validate($data){
+          $data = trim($data);
+          $data = stripslashes($data);
+          $data = htmlspecialchars($data);
+          $data = str_replace('\\', '', $data);
+          $data = str_replace('/', '', $data);
+          $data = str_replace("'", '', $data);
+          $data = str_replace(";", '', $data);
+          $data = str_replace("(", '', $data);
+          $data = str_replace(")", '', $data);
+          return $data;
+        }
+
+        //Enter journal info into database with appropriate username
+        if ($stmt = $connection->prepare('INSERT INTO journals (username, date, journal) VALUES (?,?,?)')){
+		      // Bind and assign all parameters
+          $date = date('m/d/Y');
+          $journal = validate($_POST['journal']);
+		      $stmt->bind_param('sss', $_SESSION['name'], $date, $journal);
+          echo('' . $_SESSION['name'] . $date . $journal);
+		      $stmt->execute();
+					?>
+					<p style="color: black">You have successfully entered your journal!</p>
+					<?php
+		    } else {
+		      //Something went wrong with the sql statement
+		      echo 'Could not prepare statement during insertion';
+		    }
+
+        $stmt->close();
+        $connection->close();
+        ?>
+
       </main>
       <!-- Footer -->
       <footer class="mastfoot mt-auto">

@@ -82,7 +82,7 @@
 			}
 
 
-			// Check if account already exists
+			// Prepare SQL to prevent injection
 			if ($stmt = $connection->prepare('SELECT id, password FROM accounts WHERE username = ?')){
 			  // Bind the username
 			  $stmt->bind_param('s',$_POST['username']);
@@ -96,7 +96,7 @@
 					<?php
 			  } else { //Insert a new account
 			    if ($stmt = $connection->prepare('INSERT INTO accounts (username, password, email) VALUES (?,?,?)')){
-			      // Hash the password, bind all parameters
+			      // Hash the password, bind and assign all parameters
 			      $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 			      $stmt->bind_param('sss', $_POST['username'], $password, $_POST['email']);
 			      $stmt->execute();
