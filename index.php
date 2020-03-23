@@ -39,8 +39,8 @@
       session_start();
 
       //Creating session variable for MySQL root password
-      //Update this pass and session pass for local/server
-      $_SESSION['pass'] = 'Qn6tmRMEzvRp';
+      //Update this pass with server's if hosting: Qn6tmRMEzvRp
+      $_SESSION['pass'] = '';
 
       //Connecting to the login database
       $DATABASE_HOST = 'localhost';

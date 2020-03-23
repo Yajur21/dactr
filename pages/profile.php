@@ -49,16 +49,16 @@ $stmt->close();
 				<div class="inner">
 					<h3 class="masthead-brand">Dactr</h3>
 					<nav class="nav nav-masthead justify-content-center">
-						<a class="nav-link" href="\dactr/pages/home.php">Home</a>
-						<a class="nav-link" href="\dactr/pages/journal.php">My Diary</a>
-						<a class="nav-link active" href="\dactr/pages/profile.php">My Profile</a>
+						<a class="nav-link" href="home.php">Home</a>
+						<a class="nav-link" href="journal.php">My Diary</a>
+						<a class="nav-link active" href="profile.php">My Profile</a>
 						<a class="nav-link" href="\dactr/php/logout.php">Logout</a>
 					</nav>
 				</div>
 			</header>
 			<!-- Profile information -->
 			<main class="text-left">
-				<h2 style="margin-bottom:2rem">Profile Page</h2>
+				<h1 style="margin-bottom:2rem">Profile Page</h1>
 				<div class="row">
 					<div class="col-6"><p>Username:</p></div>
 					<div class="col-6"><p><?=$_SESSION['name']?></p></div>

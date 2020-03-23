@@ -32,9 +32,9 @@ if (!isset($_SESSION['loggedin'])){
         <div class="inner">
           <h3 class="masthead-brand">Dactr</h3>
           <nav class="nav nav-masthead justify-content-center">
-            <a class="nav-link" href="\dactr/pages/home.php">Home</a>
-            <a class="nav-link active" href="\dactr/pages/journal.php">My Diary</a>
-            <a class="nav-link" href="\dactr/pages/profile.php">My Profile</a>
+            <a class="nav-link" href="home.php">Home</a>
+            <a class="nav-link active" href="journal.php">My Diary</a>
+            <a class="nav-link" href="profile.php">My Profile</a>
             <a class="nav-link" href="\dactr/php/logout.php">Logout</a>
           </nav>
         </div>
@@ -51,6 +51,7 @@ if (!isset($_SESSION['loggedin'])){
         </form>
 
         <?php //Recording journals in the database.
+      if('POST' === $_SERVER['REQUEST_METHOD']){
         // Connect to the database dactrlogin
   			$DATABASE_HOST = 'localhost';
   			$DATABASE_USER = 'root';
@@ -63,7 +64,7 @@ if (!isset($_SESSION['loggedin'])){
   			}
 
         //Check if form is completed
-        if (!isset($_POST['journal']) {
+        if (!isset($_POST['journal'])) {
   			  exit();
   			}
 
@@ -82,23 +83,24 @@ if (!isset($_SESSION['loggedin'])){
         }
 
         //Enter journal info into database with appropriate username
-        if ($stmt = $connection->prepare('INSERT INTO journals (username, date, journal) VALUES (?,?,?)') && isset($_POST['journal'])){
+        if ($stmt = $connection->prepare('INSERT INTO journals (username, date, journal) VALUES (?,?,?)')){
 		      // Bind and assign all parameters
           $date = date('m/d/Y');
           $journal = validate($_POST['journal']);
 		      $stmt->bind_param('sss', $_SESSION['name'], $date, $journal);
 		      $stmt->execute();
-					?>
-					<p style="color: black">You have successfully entered your journal!</p>
-					<?php
+          //Send the user to see feedback and reset date/journal
+          header('location: results.php');
+          $date = null;
+          $journal = null;
 		    } else {
 		      //Exit
-          ?><p>test</p><?php
-          exit();
+          echo 'Something went wrong with SQL preparation';
 		    }
 
         $stmt->close();
         $connection->close();
+      }
         ?>
 
       </main>

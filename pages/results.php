@@ -17,7 +17,7 @@ if (!isset($_SESSION['loggedin'])){
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title>Dactr | Home</title>
+    <title>Dactr | My Results</title>
 
     <!-- Custom style -->
     <link href="\dactr/css/style.css" rel="stylesheet" type="text/css">
@@ -32,24 +32,19 @@ if (!isset($_SESSION['loggedin'])){
         <div class="inner">
           <h3 class="masthead-brand">Dactr</h3>
           <nav class="nav nav-masthead justify-content-center">
-            <a class="nav-link active" href="home.php">Home</a>
-            <a class="nav-link" href="journal.php">My Diary</a>
+            <a class="nav-link" href="home.php">Home</a>
+            <a class="nav-link active" href="journal.php">My Diary</a>
             <a class="nav-link" href="profile.php">My Profile</a>
             <a class="nav-link" href="\dactr/php/logout.php">Logout</a>
           </nav>
         </div>
       </header>
-      <!-- Dactr image -->
-      <div class="text-center" style="margin-bottom:5rem">
-        <img src="\dactr/images/dactr.png" class="img-fluid">
-      </div>
-      <!-- Welcome and Diary button -->
-      <main role="main" class="inner cover">
-        <h1 class="cover-heading">Hello, <?=$_SESSION['name']?>!</h1>
-        <p class="lead">Write your diary for Dactr today, if you haven't already!</p>
-        <p class="lead">
-          <a href="journal.php" class="btn btn-lg btn-secondary">My Diary</a>
-        </p>
+      <!-- Results -->
+      <main>
+        <h1>Feedback</h1>
+        <?php //provide journal made
+
+        ?>
       </main>
       <!-- Footer -->
       <footer class="mastfoot mt-auto">
@@ -60,4 +55,4 @@ if (!isset($_SESSION['loggedin'])){
     </div>
   </body>
 
-  </html>
+</html>
