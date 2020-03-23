@@ -44,8 +44,8 @@ if (!isset($_SESSION['loggedin'])){
         <h1><em>Dear Dactr,</em></h2>
         <form method="post">
           <div class="form-group">
-            <label for="journal"></label>
-            <textarea class="form-control" name="journal" placeholder="Jot down your thoughts..." id="journal" rows="10" required></textarea>
+            <label for="journal">Jot down your thoughts!</label>
+            <textarea class="form-control" name="journal" id="journal" rows="10" required></textarea>
           </div>
           <input class="btn btn-large btn-secondary" type="submit" value="Submit">
         </form>
@@ -54,7 +54,7 @@ if (!isset($_SESSION['loggedin'])){
         // Connect to the database dactrlogin
   			$DATABASE_HOST = 'localhost';
   			$DATABASE_USER = 'root';
-  			$DATABASE_PASS = '';
+  			$DATABASE_PASS = $_SESSION['pass'];
   			$DATABASE_NAME = 'dactrjournal';
   			$connection = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
   			// Stop if can't connect
@@ -63,7 +63,7 @@ if (!isset($_SESSION['loggedin'])){
   			}
 
         //Check if form is completed
-        if (!isset($_POST['journal']) || $_POST['journal']=='jot') {
+        if (!isset($_POST['journal']) {
   			  exit();
   			}
 
@@ -82,19 +82,19 @@ if (!isset($_SESSION['loggedin'])){
         }
 
         //Enter journal info into database with appropriate username
-        if ($stmt = $connection->prepare('INSERT INTO journals (username, date, journal) VALUES (?,?,?)')){
+        if ($stmt = $connection->prepare('INSERT INTO journals (username, date, journal) VALUES (?,?,?)') && isset($_POST['journal'])){
 		      // Bind and assign all parameters
           $date = date('m/d/Y');
           $journal = validate($_POST['journal']);
 		      $stmt->bind_param('sss', $_SESSION['name'], $date, $journal);
-          echo('' . $_SESSION['name'] . $date . $journal);
 		      $stmt->execute();
 					?>
 					<p style="color: black">You have successfully entered your journal!</p>
 					<?php
 		    } else {
-		      //Something went wrong with the sql statement
-		      echo 'Could not prepare statement during insertion';
+		      //Exit
+          ?><p>test</p><?php
+          exit();
 		    }
 
         $stmt->close();

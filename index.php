@@ -38,10 +38,14 @@
       <?php //Login code
       session_start();
 
+      //Creating session variable for MySQL root password
+      //Update this pass and session pass for local/server
+      $_SESSION['pass'] = 'Qn6tmRMEzvRp';
+
       //Connecting to the login database
       $DATABASE_HOST = 'localhost';
       $DATABASE_USER = 'root';
-      $DATABASE_PASS = '';
+      $DATABASE_PASS = $_SESSION['pass'];
       $DATABASE_NAME = 'dactrlogin';
       $connection = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
       //Stop if a connection error occurs
