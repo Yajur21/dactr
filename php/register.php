@@ -38,6 +38,7 @@
 			</form>
 
 			<?php // Registration code
+			session_start();
 			// Connect to the database dactrlogin
 			$DATABASE_HOST = 'localhost';
 			$DATABASE_USER = 'root';

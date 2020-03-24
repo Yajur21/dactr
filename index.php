@@ -40,7 +40,7 @@
 
       //Creating session variable for MySQL root password
       //Update this pass with server's if hosting: Qn6tmRMEzvRp
-      $_SESSION['pass'] = '';
+      $_SESSION['pass'] = 'Qn6tmRMEzvRp';
 
       //Connecting to the login database
       $DATABASE_HOST = 'localhost';
@@ -79,7 +79,7 @@
           	$_SESSION['name'] = $_POST['username'];
           	$_SESSION['id'] = $id;
             // redirect to home page
-            header('Location: \dactr/pages/home.php');
+            header('Location: pages/home.php');
            }
           else {
             ?>
