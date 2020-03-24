@@ -41,11 +41,11 @@ if (!isset($_SESSION['loggedin'])){
       </header>
       <!-- Journal -->
       <main>
-        <h1><em>Dear Dactr,</em></h2>
-        <form method="post">
+        <h1><em>Dear Dactr,</em></h1>
+        <form class="mb-4" method="post">
           <div class="form-group">
-            <label for="journal">Jot down your thoughts!</label>
-            <textarea class="form-control" name="journal" id="journal" rows="10" required></textarea>
+            <label for="journal"></label>
+            <textarea class="form-control" name="journal" placeholder="Jot down your thoughts!" id="journal" rows="10" required></textarea>
           </div>
           <input class="btn btn-large btn-secondary" type="submit" value="Submit">
         </form>
@@ -103,11 +103,14 @@ if (!isset($_SESSION['loggedin'])){
       }
         ?>
 
+        <a href="results.php">Previous Entry's Feedback</a>
+
       </main>
       <!-- Footer -->
       <footer class="mastfoot mt-auto">
         <div class="inner">
-          <p>&copy; PyFresh</p>
+          <p>&copy; Dactr Group</p>
+          <a class="btn btn-link btn-sm text-danger" href="crisis.php">Need Support Now?</a>
         </div>
       </footer>
     </div>

@@ -41,7 +41,7 @@ if (!isset($_SESSION['loggedin'])){
       </header>
       <!-- Results -->
       <main>
-          <h1 style="margin-bottom: 3rem">Feedback</h1>
+          <h1>Feedback</h1>
           <!-- Cards with journal and feedback -->
             <!-- Journal card -->
             <div class ="card" style="text-align: left">
@@ -61,20 +61,24 @@ if (!isset($_SESSION['loggedin'])){
           				exit('Failed to connect ' . mysqli_connect_error());
           			}
 
-                //Find and display today's journal made by the patient
-                $date = $date = date('m/d/Y');
+                //Find and display today's latest journal made by the patient
+                //$date = $date = date('m/d/Y');
                 $result = $connection->query("SELECT username, date, journal FROM journals ORDER BY id DESC LIMIT 1");
-
+                $noName = 0;
                 if ($result->num_rows > 0){
                   while($row = $result->fetch_assoc()){
-                    if ($row['username'] == $_SESSION['name'] && $row['date'] == $date){
+                    if ($row['username'] == $_SESSION['name']){
                       echo '<p class="card-text">'.$row['journal'].'</p>';
-                      echo '<p class="card-text mb-2">- <em>'.$_SESSION['name'].'</em></p>';
+                      echo '<p class="card-text mb-2">- <em>'.$_SESSION['name'].' '.$row['date'].'</em></p>';
+                      $noName = 1;
                       break;
                     }
                   }
+                  if ($noName == 0){
+                    ?><p class="card-text"><em>You haven't written in your diary yet!</em></p><?php
+                  }
                 } else {
-                  ?>"<p class="card-text">You haven't written a journal today!</p>";<?php
+                  ?><p class="card-text"><em>You haven't written in your diary yet!</em></p><?php
                 }
                 ?>
 
@@ -109,7 +113,8 @@ if (!isset($_SESSION['loggedin'])){
       <!-- Footer -->
       <footer class="mastfoot mt-auto">
         <div class="inner">
-          <p>&copy; PyFresh</p>
+          <p>&copy; Dactr Group</p>
+          <a class="btn btn-link btn-sm text-danger" href="crisis.php">Need Support Now?</a>
         </div>
       </footer>
     </div>

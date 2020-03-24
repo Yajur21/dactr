@@ -58,7 +58,7 @@ $stmt->close();
 			</header>
 			<!-- Profile information -->
 			<main class="text-left">
-				<h1 style="margin-bottom:2rem">Profile Page</h1>
+				<h1>Profile Page</h1>
 				<div class="row">
 					<div class="col-6"><p>Username:</p></div>
 					<div class="col-6"><p><?=$_SESSION['name']?></p></div>
@@ -71,7 +71,8 @@ $stmt->close();
 			<!-- Footer -->
 			<footer class="mastfoot mt-auto">
         <div class="inner">
-          <p>&copy; PyFresh</p>
+          <p>&copy; Dactr Group</p>
+					<a class="btn btn-link btn-sm text-danger" href="crisis.php">Need Support Now?</a>
         </div>
       </footer>
 		</div>
