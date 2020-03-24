@@ -41,41 +41,69 @@ if (!isset($_SESSION['loggedin'])){
       </header>
       <!-- Results -->
       <main>
-        <div class="row">
-          <h1>Feedback</h1>
-        </div>
-        <div class="row">
-          <?php //provide journal made
-          ?><p> 1Make sure to eat plenty of mac and cheese</p><?php
-          # Includes the autoloader for libraries installed with composer
-          require __DIR__ . '/vendor/autoload.php';
-          ?><p> 2Make sure to eat plenty of mac and cheese</p><?php
-          # Imports the Google Cloud client library
-          use Google\Cloud\Language\LanguageClient;
-          ?><p> 3Make sure to eat plenty of mac and cheese</p><?php
-          # Your Google Cloud Platform project ID
-          $projectId = 'dactr-272020';
-          ?><p> 4Make sure to eat plenty of mac and cheese</p><?php
-          # Instantiates a client
-          $language = new LanguageClient([
-            'projectId' => $projectId
-          ]);
-          ?><p> 5Make sure to eat plenty of mac and cheese</p><?php
-          # The text to analyze
-          $text = 'Hello, world!';
-          ?><p> 6Make sure to eat plenty of mac and cheese</p><?php
-          # Detects the sentiment of the text
-          $annotation = $language->analyzeSentiment($text);
-          $sentiment = $annotation->sentiment();
-          ?><p> 7Make sure to eat plenty of mac and cheese</p><?php
-          echo 'Text: ' . $text . '
-          Sentiment: ' . $sentiment['score'] . ', ' . $sentiment['magnitude'];
-          ?><p> 8Make sure to eat plenty of mac and cheese</p><?php
-          ?>
-        </div>
-        <div class="row">
-          <p> Make sure to eat plenty of mac and cheese</p>
-        </div>
+          <h1 style="margin-bottom: 3rem">Feedback</h1>
+          <!-- Cards with journal and feedback -->
+            <!-- Journal card -->
+            <div class ="card" style="text-align: left">
+              <div class="card-header">Your Diary Entry</div>
+              <div class="card-body">
+                <h5 class="card-title">Dear Dactr,</h5>
+
+                <?php //Pull and display journal
+                // Connect to the database dactrlogin
+          			$DATABASE_HOST = 'localhost';
+          			$DATABASE_USER = 'root';
+          			$DATABASE_PASS = $_SESSION['pass'];
+          			$DATABASE_NAME = 'dactrjournal';
+          			$connection = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+          			// Stop if can't connect
+          			if (mysqli_connect_errno()) {
+          				exit('Failed to connect ' . mysqli_connect_error());
+          			}
+
+                //Find and display today's journal made by the patient
+                $date = $date = date('m/d/Y');
+                $result = $connection->query("SELECT username, date, journal FROM journals");
+
+                if ($result->num_rows > 0){
+                  while($row = $result->fetch_assoc()){
+                    if ($row['username'] == $_SESSION['name'] && $row['date'] == $date){
+                      echo '<p class="card-text">'.$row['journal'].'</p>';
+                      echo '<p class="card-text mb-2">- <em>'.$_SESSION['name'].'</em></p>';
+                    }
+                  }
+                } else {
+                  ?>"<p class="card-text">You haven't written a journal today!</p>";<?php
+                }
+                ?>
+
+              </div>
+            </div>
+            <!--Feedback card -->
+
+            <?php
+            /*
+            # Includes the autoloader for libraries installed with composer
+            require __DIR__ . '/vendor/autoload.php';
+            # Imports the Google Cloud client library
+            use Google\Cloud\Language\LanguageClient;
+            # Your Google Cloud Platform project ID
+            $projectId = 'dactr-272020';
+            # Instantiates a client
+            $language = new LanguageClient([
+              'projectId' => $projectId
+            ]);
+            # The text to analyze
+            $text = 'Hello, world!';
+            # Detects the sentiment of the text
+            $annotation = $language->analyzeSentiment($text);
+            $sentiment = $annotation->sentiment();
+            echo 'Text: ' . $text . '
+            Sentiment: ' . $sentiment['score'] . ', ' . $sentiment['magnitude'];
+            */
+            $connection->close();
+            ?>
+            
       </main>
       <!-- Footer -->
       <footer class="mastfoot mt-auto">

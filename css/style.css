@@ -48,6 +48,18 @@ body {
   max-width: 42em;
 }
 
+/* Card properties */
+.card{
+  border-color: #2f3947;
+  width:100%;
+  max-width: 400rem;
+  margin-bottom: 2rem;
+}
+.card-header, .card-body, .card-title, .card-text{
+  color: #2f3947;
+}
+
+
 /* Header */
 .masthead {
   margin-bottom: 5rem;
