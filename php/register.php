@@ -8,10 +8,10 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title>Register</title>
+    <title>Register for Dactr</title>
 
     <!-- Custom CSS -->
-    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="\dactr/css/login.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
 
 	</head>
@@ -28,20 +28,21 @@
 				<label for="password">
 					<i class="fas fa-lock"></i>
 				</label>
-				<input type="password" name="password" placeholder="Password" id="password" required>
+				<input type="password" name="password" placeholder="Password (5-20 Characters)" id="password" required>
 				<label for="email">
 					<i class="fas fa-envelope"></i>
 				</label>
 				<input type="email" name="email" placeholder="Email" id="email" required>
-        <a href="index.php" style="padding:5px">Go back to login</a>
+        <a href="\dactr/index.php" style="padding:5px">Go back to login</a>
 				<input type="submit" value="Register">
 			</form>
 
 			<?php // Registration code
+			session_start();
 			// Connect to the database dactrlogin
 			$DATABASE_HOST = 'localhost';
 			$DATABASE_USER = 'root';
-			$DATABASE_PASS = '';
+			$DATABASE_PASS = $_SESSION['pass'];
 			$DATABASE_NAME = 'dactrlogin';
 			$connection = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
 			// Stop if can't connect
@@ -61,7 +62,7 @@
 			// Email validation
 			if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
 				?>
-				<p>Email is not valid</p>
+				<p class = "text-danger">Email is not valid</p>
 				<?php
 				exit();
 			}
@@ -69,20 +70,20 @@
 			// Valid characters: uppercase and lowercase, numbers
 			if (preg_match('/[A-Za-z0-9]+/', $_POST['username']) == 0){
 				?>
-				<p>Username is not valid</p>
+				<p class = "text-danger">Username is not valid</p>
 				<?php
 			  exit();
 			}
 			// Character length Validation
 			if (strlen($_POST['password']) > 20 || strlen($_POST['password']) < 5){
 				?>
-				<p>Password must be between 5 and 20 characters long</p>
+				<p class = "text-danger">Password must be between 5 and 20 characters long</p>
 				<?php
 				exit();
 			}
 
 
-			// Check if account already exists
+			// Prepare SQL to prevent injection
 			if ($stmt = $connection->prepare('SELECT id, password FROM accounts WHERE username = ?')){
 			  // Bind the username
 			  $stmt->bind_param('s',$_POST['username']);
@@ -92,11 +93,11 @@
 
 			  if ($stmt->num_rows > 0){
 					?>
-					<p>Username exists, please choose another</p>
+					<p class = "text-danger">Username exists, please choose another</p>
 					<?php
 			  } else { //Insert a new account
 			    if ($stmt = $connection->prepare('INSERT INTO accounts (username, password, email) VALUES (?,?,?)')){
-			      // Hash the password, bind all parameters
+			      // Hash the password, bind and assign all parameters
 			      $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 			      $stmt->bind_param('sss', $_POST['username'], $password, $_POST['email']);
 			      $stmt->execute();

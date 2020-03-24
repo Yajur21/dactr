@@ -9,17 +9,17 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title>Login</title>
+    <title>Login to Dactr</title>
 
     <!-- Custom CSS from Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     <!-- Custom page CSS -->
-    <link href="css/signin.css" rel="stylesheet" type="text/css">
+    <link href="css/login.css" rel="stylesheet" type="text/css">
 
   </head>
 
   <body>
-    <div class="login">
+    <div class="register">
 			<h1>Login</h1>
       <!-- Login Form -->
       <form method="post">
@@ -27,21 +27,25 @@
 					<i class="fas fa-user"></i>
 				</label>
 				<input type="text" name="username" placeholder="Username" id="username" required>
-				<label for="password">
+        <label for="password">
 					<i class="fas fa-lock"></i>
 				</label>
-				<input type="password" name="password" placeholder="Password" id="password" required>
-        <a href="register.php" style:"padding:5px">Click here to register</a>
+			  <input type="password" name="password" placeholder="Password" id="password" required>
+        <a href="php/register.php" style:"padding:5px">Click here to register</a>
 				<input type="submit" value="login">
 			</form>
 
       <?php //Login code
       session_start();
 
+      //Creating session variable for MySQL root password
+      //Update this pass with server's if hosting: Qn6tmRMEzvRp
+      $_SESSION['pass'] = '';
+
       //Connecting to the login database
       $DATABASE_HOST = 'localhost';
       $DATABASE_USER = 'root';
-      $DATABASE_PASS = '';
+      $DATABASE_PASS = $_SESSION['pass'];
       $DATABASE_NAME = 'dactrlogin';
       $connection = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
       //Stop if a connection error occurs
@@ -75,17 +79,17 @@
           	$_SESSION['name'] = $_POST['username'];
           	$_SESSION['id'] = $id;
             // redirect to home page
-            header('Location: \dactr/pages/home.php');
+            header('Location: pages/home.php');
            }
           else {
             ?>
-              <p>Incorrect password</p>
+              <p class="text-danger">Incorrect password</p>
             <?php
           }
         }
         else {
           ?>
-            <p>Incorrect username!</p>
+            <p class="text-danger">Incorrect username</p>
           <?php
         }
 

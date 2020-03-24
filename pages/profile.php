@@ -8,7 +8,7 @@ if (!isset($_SESSION['loggedin'])) {
 //Connect to the login database
 $DATABASE_HOST = 'localhost';
 $DATABASE_USER = 'root';
-$DATABASE_PASS = '';
+$DATABASE_PASS = $_SESSION['pass'];
 $DATABASE_NAME = 'dactrlogin';
 $connection = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
 //Send an error if failed
@@ -35,40 +35,46 @@ $stmt->close();
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title>Profile</title>
+    <title>Dactr | My Profile</title>
 
     <!-- Custom style -->
     <link href="\dactr/css/style.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
   </head>
 
-  <body class="loggedin">
-		<nav class="navtop">
-			<div>
-				<h1>Website Title</h1>
-				<a href="\dactr/pages/profile.php"><i class="fas fa-user-circle"></i>Profile</a>
-				<a href="\dactr/php/logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
-			</div>
-		</nav>
-		<div class="content">
-			<h2>Profile Page</h2>
-			<div>
-				<p>Your account details are below:</p>
-				<table>
-					<tr>
-						<td>Username:</td>
-						<td><?=$_SESSION['name']?></td>
-					</tr>
-					<tr>
-						<td>Password:</td>
-						<td><?=$password?></td>
-					</tr>
-					<tr>
-						<td>Email:</td>
-						<td><?=$email?></td>
-					</tr>
-				</table>
-			</div>
+  <body class="text-center">
+		<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+			<!-- Header -->
+			<header class="masthead">
+				<div class="inner">
+					<h3 class="masthead-brand">Dactr</h3>
+					<nav class="nav nav-masthead justify-content-center">
+						<a class="nav-link" href="home.php">Home</a>
+						<a class="nav-link" href="journal.php">My Diary</a>
+						<a class="nav-link active" href="profile.php">My Profile</a>
+						<a class="nav-link" href="\dactr/php/logout.php">Logout</a>
+					</nav>
+				</div>
+			</header>
+			<!-- Profile information -->
+			<main class="text-left">
+				<h1>Profile Page</h1>
+				<div class="row">
+					<div class="col-6"><p>Username:</p></div>
+					<div class="col-6"><p><?=$_SESSION['name']?></p></div>
+				</div>
+				<div class="row">
+					<div class="col-6"><p>Email:</p></div>
+					<div class="col-6"><p><?=$email?></p></div>
+				</div>
+			</main>
+			<!-- Footer -->
+			<footer class="mastfoot mt-auto">
+        <div class="inner">
+          <p>&copy; Dactr Group</p>
+					<a class="btn btn-link btn-sm text-danger" href="crisis.php">Need Support Now?</a>
+        </div>
+      </footer>
 		</div>
 	</body>
 

@@ -39,17 +39,16 @@ if (!isset($_SESSION['loggedin'])){
           </nav>
         </div>
       </header>
-      <!-- Dactr image -->
-      <div class="text-center" style="margin-bottom:5rem">
-        <img src="\dactr/images/dactr.png" class="img-fluid">
-      </div>
-      <!-- Welcome and Diary button -->
-      <main role="main" class="inner cover">
-        <h1 class="cover-heading" style="margin-bottom: 2rem">Hello, <?=$_SESSION['name']?>!</h1>
-        <p class="lead">Write your diary for Dactr today, if you haven't already!</p>
-        <p class="lead">
-          <a href="journal.php" class="btn btn-lg btn-secondary">My Diary</a>
-        </p>
+      <!-- Info -->
+      <main>
+        <h1>Need Support Now?</h1>
+        <h5>Please don't hesitate to connect with these sources to receive immediate support</h5>
+        <div class="m-4">
+          <a class="btn btn-danger btn-lg btn-block p-3" href="https://www.crisistextline.org/" role="button">Text Line</a>
+          <a class="btn btn-danger btn-lg btn-block p-3" href="https://suicidepreventionlifeline.org/chat/" role="button">Chat Line</a>
+          <a class="btn btn-danger btn-lg btn-block p-3" href="tel:1-800-273-8255" role="button">Talk Line</a>
+        </div>
+        <h5>Remember, no crisis is too small for a chat!</h5>
       </main>
       <!-- Footer -->
       <footer class="mastfoot mt-auto">
@@ -61,4 +60,4 @@ if (!isset($_SESSION['loggedin'])){
     </div>
   </body>
 
-  </html>
+</html>
