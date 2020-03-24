@@ -63,13 +63,14 @@ if (!isset($_SESSION['loggedin'])){
 
                 //Find and display today's journal made by the patient
                 $date = $date = date('m/d/Y');
-                $result = $connection->query("SELECT username, date, journal FROM journals");
+                $result = $connection->query("SELECT username, date, journal FROM journals ORDER BY id DESC LIMIT 1");
 
                 if ($result->num_rows > 0){
                   while($row = $result->fetch_assoc()){
                     if ($row['username'] == $_SESSION['name'] && $row['date'] == $date){
                       echo '<p class="card-text">'.$row['journal'].'</p>';
                       echo '<p class="card-text mb-2">- <em>'.$_SESSION['name'].'</em></p>';
+                      break;
                     }
                   }
                 } else {
@@ -103,7 +104,7 @@ if (!isset($_SESSION['loggedin'])){
             */
             $connection->close();
             ?>
-            
+
       </main>
       <!-- Footer -->
       <footer class="mastfoot mt-auto">
