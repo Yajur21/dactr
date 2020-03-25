@@ -2,7 +2,7 @@
 session_start();
 //redirect if not logged in
 if (!isset($_SESSION['loggedin'])) {
-	header('Location: \dactr/index.php');
+	header('Location: ../index.php');
 	exit;
 }
 //Connect to the login database
@@ -52,7 +52,7 @@ $stmt->close();
 						<a class="nav-link" href="home.php">Home</a>
 						<a class="nav-link" href="journal.php">My Diary</a>
 						<a class="nav-link active" href="profile.php">My Profile</a>
-						<a class="nav-link" href="\dactr/php/logout.php">Logout</a>
+						<a class="nav-link" href="../php/logout.php">Logout</a>
 					</nav>
 				</div>
 			</header>
