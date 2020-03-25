@@ -17,7 +17,7 @@ if (!isset($_SESSION['loggedin'])){
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title>Dactr | My Results</title>
+    <title>Dactr | My Feedback</title>
 
     <!-- Custom style -->
     <link href="\dactr/css/style.css" rel="stylesheet" type="text/css">
@@ -85,29 +85,42 @@ if (!isset($_SESSION['loggedin'])){
               </div>
             </div>
             <!--Feedback card -->
+            <div class ="card" style="text-align: left">
+              <div class="card-header">Sentiment Analysis</div>
+              <div class="card-body">
+                <h5 class="card-title">Dear <?=$_SESSION['name']?>,</h5>
 
-            <?php
-            /*
-            # Includes the autoloader for libraries installed with composer
-            require __DIR__ . '/vendor/autoload.php';
-            # Imports the Google Cloud client library
-            use Google\Cloud\Language\LanguageClient;
-            # Your Google Cloud Platform project ID
-            $projectId = 'dactr-272020';
-            # Instantiates a client
-            $language = new LanguageClient([
-              'projectId' => $projectId
-            ]);
-            # The text to analyze
-            $text = 'Hello, world!';
-            # Detects the sentiment of the text
-            $annotation = $language->analyzeSentiment($text);
-            $sentiment = $annotation->sentiment();
-            echo 'Text: ' . $text . '
-            Sentiment: ' . $sentiment['score'] . ', ' . $sentiment['magnitude'];
-            */
-            $connection->close();
-            ?>
+                <?php
+
+                # Includes the autoloader for libraries installed with composer
+                include '/home/bitnami/vendor/autoload.php';
+                echo '<p>test2</p>';
+
+                # Imports the Google Cloud client library
+                use Google\Cloud\Language\LanguageClient;
+
+                # Your Google Cloud Platform project ID
+                $projectId = 'dactr-272020';
+
+                # Instantiates a client
+                $language = new LanguageClient(['projectId' => $projectId]);
+
+                # The text to analyze
+                $text = "I love garlic bread! It's by far the best type of bread on earth.";
+                echo '<p>text</p>';
+
+                # Detects the sentiment of the text   analyzeSentiment()
+                $annotation = $language->analyzeSentiment($text);
+                echo '<p>bro i am screaming 1</p>';
+                $sentiment = $annotation->sentiment();
+                echo '<p>bro i am screaming 2</p>';
+                echo "<p>Sentiment: " . $sentiment['score'] . "</p>";
+
+                $connection->close();
+                ?>
+              </div>
+            </div>
+
 
       </main>
       <!-- Footer -->
